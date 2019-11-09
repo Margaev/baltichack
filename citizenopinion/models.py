@@ -28,7 +28,7 @@ class Post(models.Model):
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
     def __str__ (self):
-        return Post
+        return self.title
 
     @property
     def total_likes(self):
