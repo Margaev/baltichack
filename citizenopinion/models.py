@@ -22,7 +22,7 @@ class Post(models.Model):
     title = models.CharField(max_length = 200)
     text = models.TextField()
     create_date = models.DateTimeField(default=timezone.now)
-						#Место откуда фото качаются cheds
+    city = models.CharField(max_length = 32)
     image = models.ImageField(upload_to = './', null = True)
     likes = GenericRelation(Like)
     #dislikes = models.IntegerField()
