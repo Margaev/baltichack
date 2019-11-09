@@ -4,7 +4,7 @@ from .models import Post
 
 
 def home_page(request):
-    posts = Post.objects.all().orer_by('-create_date') 
+    posts = Post.objects.all().order_by('-create_date')
     context = {
         'posts': posts
     }
