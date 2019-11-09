@@ -21,7 +21,7 @@ class Post(models.Model):
     text = models.TextField()
     create_date = models.DateTimeField(default=timezone.now)
 						#Место откуда фото качаются cheds
-#    image = models.ImageField(upload_to = '/',height_field = 100, Width_field = 100)
+    image = models.ImageField(upload_to = './', null = True)
     likes = GenericRelation(Like)
     #dislikes = models.IntegerField()
     class Meta:
