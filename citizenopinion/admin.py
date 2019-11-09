@@ -1,7 +1,23 @@
 from django.contrib import admin
-from .models import Post
-from .models import Question
-from .models import Answer
+from .models import Post, Choice, Poll
+
+class ChoiceInline(admin.TabularInline):
+    model = Choice
+    readonly_fields = ('votes',)
+    extra = 3
+
+
+class PollAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {
+            'fields': ['question', 'post'],
+        }),
+    ]
+    inlines = [ChoiceInline]
+    list_display = ('question',)
+    search_fields = ['question']
+
+
+admin.site.register(Poll, PollAdmin)
+admin.site.register(Choice)
 admin.site.register(Post)
-admin.site.register(Question)
-admin.site.register(Answer)
