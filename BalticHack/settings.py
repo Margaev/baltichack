@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'citizenopinion',
+    'citizenopinion.apps.CitizenopinionConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
