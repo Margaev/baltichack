@@ -14,6 +14,7 @@ class Like(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
+    couner = models.IntegerField()
 
 
 class Post(models.Model):
@@ -28,7 +29,7 @@ class Post(models.Model):
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
     def __str__ (self):
-        return Post
+        return self.title
 
     @property
     def total_likes(self):
@@ -36,7 +37,7 @@ class Post(models.Model):
 
 class Question(models.Model):
     """Вопрос"""
-
+    Post_id = models.ForeignKey(Post,on_delete=models.CASCADE)
     title = models.CharField(max_length=200, verbose_name = "Вопрос")
     date_published = models.DateTimeField(verbose_name = "Дата публикации",
         default = datetime.datetime.now())
