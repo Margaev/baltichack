@@ -4,29 +4,29 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
 
-from .models import Choice, Poll
+from .models import Choice, Post
 
 
 class IndexView(generic.ListView):
     template_name = 'index.html'
-    context_object_name = 'latest_poll_list'
+    context_object_name = 'posts'
 
     def get_queryset(self):
-        return Poll.objects.all()[:5]
+        return Post.objects.all()[:5]
 
 
 class DetailView(generic.DetailView):
-    model = Poll
+    model = Post
     template_name = 'detail.html'
 
 
 class ResultsView(generic.DetailView):
-    model = Poll
+    model = Post
     template_name = 'results.html'
 
 
 def vote(request, poll_id):
-    p = get_object_or_404(Poll, pk=poll_id)
+    p = get_object_or_404(Post, pk=poll_id)
     try:
         selected_choice = p.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
