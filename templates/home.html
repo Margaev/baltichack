@@ -1,18 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>home page</title>
-</head>
-<body>
-<h1>Home page</h1>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="navbarec.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  </head>
+  <body>
+
+    
+    <nav class="shdw navbar navbar-expand-lg navbar-default fixed-top" style="background: #d7c6f2">
+  <a class="navbar-brand col-lg-1 text-light" type="dissable"><img src="logo.png" width="25px" height="25px" alt="logo">Kuler Corp</a>
+  <div class="container col-lg-4">
+    <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link text-light" href="#" >Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-light" href="#">Center</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-light" href="#">FAQ</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-light" href="#">Govno</a>
+    </li>
+  </ul>
+  </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 {% if user.is_authenticated %}
     <p>Hi {{ user.username }}!</p>
     <p><a href="{% url 'logout' %}">Log out</a></p>
 {% else %}
     <p>You are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
-{% endif %}
-</body>
+
+
+
+<div class="container">
+  <div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-8 " style="margin-left: 40px">
+    <h2>Card Image</h2>
+    <p>Image at the top (card-img-top):</p>
+    <div class="shdw card" style="width:100%">
+      <img class="card-img-top" src="http://www.stylerug.net/wp-content/uploads/2016/11/Green-to-be-a-hit-new.jpg" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <h4 class="card-title">John CSS</h4>
+        <p class="card-text">Some example text some example text. John CSS is an architect and engineer</p>
+        <a href="#" class="shdw btn btn-light" style="background: #ffffff;"><img src="thumb_up-24px.svg" width="32">  <b class="counter">21</b></a>
+        
+        <a href="#" class="shdw btn btn-light" style="background: #ffffff; margin-left: 8px"><img src="thumb_down-24px.svg" width="32"><b class="counter">42</b></a>
+
+      </div>
+    </div>
+    </div>
+  </div>
+  <br>
+  <br>
+</div>
+
+  <!-- <div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-8" style="margin-left: 40px">
+    <h2>Card Image</h2>
+    <p>Image at the top (card-img-top):</p>
+    <div class="card" style="width:100%">
+      <img class="card-img-top" src="http://www.stylerug.net/wp-content/uploads/2016/11/Green-to-be-a-hit-new.jpg" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <h4 class="card-title">John CSS</h4>
+        <p class="card-text">Some example text some example text. John CSS is an architect and engineer</p>
+        <a href="#" class="btn btn-primary"><img src="goodrev.png"></a>
+      </div>
+    </div>
+    <br>
+  </div>
+  </div>
+</div>
+
+ -->
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container" width="500px">
+  <div class="card" style="width:100%">
+    <img class="card-img-top" src="http://www.stylerug.net/wp-content/uploads/2016/11/Green-to-be-a-hit-new.jpg" alt="Card image" style="width:75%; margin-left: 116px; margin-right: 116px;margin-top: 25px; ">
+    <div class="card-body">
+      <h4 class="card-title">John CSS</h4>
+      <p class="card-text">Some example text some example text. John CSS is an architect and engineer</p>
+      <a href="#" class="btn btn-primary">See Profile</a>
+    </div>
+  </div>
+<br>
+</div>
+ -->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
 </html>
