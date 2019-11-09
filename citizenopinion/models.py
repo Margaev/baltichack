@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
-class New(models.Model):
+class Post(models.Model):
 	title = models.CharField(max_length = 200)
 	text = models.TextField()
 	create_date = models.DateTimeField(default=timezone.now)
@@ -11,5 +11,5 @@ class New(models.Model):
 	up = models.IntegerField()
 	dis = models.IntegerField()
 	def __str__ (self):
-		 return New
+		 return Post
 
