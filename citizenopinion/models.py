@@ -7,6 +7,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 import datetime
 
+
 class Like(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              related_name='likes',
