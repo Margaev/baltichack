@@ -9,7 +9,7 @@ class Post(models.Model):
     text = models.TextField()
     create_date = models.DateTimeField(default=timezone.now)
 						#Место откуда фото качаются
-#	image = models.ImageField(upload_to = '/',height_field = 100, Width_field = 100)
+#    image = models.ImageField(upload_to = '/',height_field = 100, Width_field = 100)
     up = models.IntegerField()
     dis = models.IntegerField()
     class Meta:
@@ -21,6 +21,7 @@ class Post(models.Model):
 
 class Question(models.Model):
     """Вопрос"""
+    
     title = models.CharField(max_length=200, verbose_name = "Вопрос")
     date_published = models.DateTimeField(verbose_name = "Дата публикации", 
         default = datetime.datetime.now())
@@ -29,7 +30,7 @@ class Question(models.Model):
     def __str__(self):
         return self.title
     
- 
+
     class Meta:
         verbose_name = 'Вопрос'
         verbose_name_plural = 'Вопросы'
