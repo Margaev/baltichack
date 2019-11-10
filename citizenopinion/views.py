@@ -3,8 +3,10 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
-
 from .models import Choice, Post, Poll
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class IndexView(generic.ListView):

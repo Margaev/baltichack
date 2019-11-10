@@ -20,6 +20,7 @@
 <br>
 <br>
 
+{% if user.is_authenticated %}
 <h1>{{ post.poll.question }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -32,5 +33,17 @@
 {% endfor %}
 <input type="submit" value="Vote" />
 </form>
+
+{% else %}
+
+<h1>{{ post.poll.question }}</h1>
+
+<ul>
+{% for choice in post.poll.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+{% endif %}
 
 {% endblock %}
