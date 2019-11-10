@@ -25,14 +25,14 @@ class ResultsView(generic.DetailView):
     template_name = 'results.html'
 
 
-def vote(request, poll_id):
-    p = get_object_or_404(Post, pk=poll_id)
+def vote(request, post_id):
+    p = get_object_or_404(Post, pk=post_id)
     try:
         selected_choice = p.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the poll voting form.
         return render(request, 'detail.html', {
-            'poll': p,
+            'post': p,
             'error_message': "You didn't select a choice.",
         })
     else:
