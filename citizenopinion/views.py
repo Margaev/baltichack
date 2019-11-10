@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
-from .models import Choice, Post, Poll, Votes
+from .models import Choice, Post, Poll, Votes, City
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -13,8 +13,33 @@ class IndexView(generic.ListView):
     template_name = 'index.html'
     context_object_name = 'posts'
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context.update({
+            'posts': Post.objects.all(),
+            'cities': City.objects.all(),
+        })
+        return context
+
     def get_queryset(self):
-        return Post.objects.all()
+        return Post.objects.all().order_by('-create_date')
+
+
+class FilterCity(generic.ListView):
+    template_name = 'index.html'
+    context_object_name = 'posts'
+
+    def get_context_data(self, **kwargs):
+        context = super(FilterCity, self).get_context_data(**kwargs)
+        context.update({
+            'posts': Post.objects.filter(city=self.city).order_by('-create_date'),
+            'cities': City.objects.all(),
+        })
+        return context
+
+    def get_queryset(self):
+        self.city = get_object_or_404(City, title=self.kwargs['city'])
+        return Post.objects.filter(city=self.city).order_by('-create_date')
 
 
 class DetailView(generic.DetailView):

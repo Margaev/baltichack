@@ -27,11 +27,9 @@
               </a>
               <div class="dropdown-menu">
 
-<!--                {% for city in posts.city %}-->
-<!--                    <a class="dropdown-item" href="#">{{ city.title }}</a>-->
-<!--                {% endfor %}-->
-                <a class="dropdown-item" href="#">Санкт-Петербург</a>
-                <a class="dropdown-item" href="#">Москва</a>
+                {% for city in cities %}
+                    <a class="dropdown-item" href="{% url 'citizenopinion:filter_index' city.title%}">{{ city.title }}</a>
+                {% endfor %}
               </div>
             </li>
       
