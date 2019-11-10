@@ -25,19 +25,25 @@
 <br>
 
 {% if user.is_authenticated %}
-<h1>{{ post.poll.question }}</h1>
+<h1 style="margin-left: 20%;">{{ post.poll.question }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<div class="container">
+<div class="shdw container" style="margin-left: 20%; width: 100%;" >
   <form action="{% url 'citizenopinion:vote' post.poll.id %}" method="post">
   {% csrf_token %}
   {% for choice in post.poll.choice_set.all %}
      <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
      <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
   {% endfor %}
-  <input type="submit" value="Vote" />
+  <input class="btn bnt-dark" type="submit" value="Проголосовать" />
   </form>
-  </div>
+  <br>
+    
+</div>
+  <br>
+  <br>
+  <br>
+  <br>
 {% else %}
 <div class="container">
 
