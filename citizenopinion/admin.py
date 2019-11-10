@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Post, Choice, Poll, Votes
+from .models import Post, Choice, Poll
 
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
-    readonly_fields = ('votes',)
+    readonly_fields = ('votes_count',)
     extra = 3
 
 
@@ -22,4 +22,3 @@ class PollAdmin(admin.ModelAdmin):
 admin.site.register(Poll, PollAdmin)
 admin.site.register(Choice)
 admin.site.register(Post)
-admin.site.register(Votes)
