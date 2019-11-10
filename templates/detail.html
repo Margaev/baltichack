@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<div class="container jumbotron">
+<div class="shdw container jumbotron">
   <div class="row">
       {% if request.path == 'http://127.0.0.1:8000/1/vote/' %}
     <img  class="col-lg-6" src="../../media/{{ post.image }}" width="100%">
       {% else %}
-      <img  class="col-lg-6" src="../media/{{ post.image }}" width="100%">
+      <img  class="col-lg-6" src="../media/{{ post.image }}" width="" style="height: 120%;">
       {% endif %}
     <div class="col-lg-6">
     <h2>{{ post.title }}</h2>
@@ -41,8 +41,8 @@
 {% else %}
 <div class="container">
 
-    <div class="shdw card" style="width:50%; margin-left:23% ;">
-        <h1>{{ post.poll.question }}</h1>
+    <div class="shdw card" style="width:100%; margin-left: ;">
+        <h1 style="padding-left: 40px; margin-left: 2px;">{{ post.poll.question }}</h1>
         <ul class="counter " style="list-style-type:none; font-family:  sans-serif;">
         {% for choice in post.poll.choice_set.all %}
             <li>{{ choice.choice_text }} (Количество проголосовавших: {{ choice.votes_count }})</li>
@@ -51,6 +51,10 @@
         </ul>
 </div>
 </div>
+<br>
+<br>
+<br>
+<br>
 {% endif %}
 
 {% endblock %}
