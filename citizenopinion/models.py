@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.conf import settings
 from django.db import models
 import datetime
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Post(models.Model):
@@ -31,3 +34,8 @@ class Choice(models.Model):
 
     def __str__(self):              # Python 3: def __unicode__(self):
         return self.choice_text
+
+
+# class Votes(models.Model):
+#     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+#     choice_id = models.ForeignKey(Choice, on_delete=models.CASCADE)
