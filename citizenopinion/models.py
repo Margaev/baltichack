@@ -23,19 +23,23 @@ class Poll(models.Model):
     question = models.CharField(max_length=200)
     post = models.OneToOneField(Post, on_delete=models.CASCADE)
 
-    def __str__(self):              # Python 3: def __unicode__(self):
+    def __str__(self):
         return self.question
 
 
 class Choice(models.Model):
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
 
-    def __str__(self):              # Python 3: def __unicode__(self):
+    def __str__(self):
         return self.choice_text
 
 
-# class Votes(models.Model):
-#     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-#     choice_id = models.ForeignKey(Choice, on_delete=models.CASCADE)
+class Votes(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
+
+    @classmethod
+    def create(cls, user, choice):
+        vote = cls(user=user, choice=choice)
+        return vote

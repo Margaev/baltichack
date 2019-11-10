@@ -4,7 +4,11 @@
 
 <div class="container jumbotron">
   <div class="row">
-    <img  class="col-lg-6" src="../media/{{ post.image }}" width="100%">
+      {% if request.path == 'http://127.0.0.1:8000/1/vote/' %}
+    <img  class="col-lg-6" src="../../media/{{ post.image }}" width="100%">
+      {% else %}
+      <img  class="col-lg-6" src="../media/{{ post.image }}" width="100%">
+      {% endif %}
     <div class="col-lg-6">
     <h2>{{ post.title }}</h2>
     <p>{{ post.text }}</p>

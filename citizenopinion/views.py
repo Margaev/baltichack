@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
-from .models import Choice, Post, Poll
+from .models import Choice, Post, Poll, Votes
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -31,6 +31,7 @@ def vote(request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)
     try:
         selected_choice = p.choice_set.get(pk=request.POST['choice'])
+        user = request.user
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the poll voting form.
         return render(request, 'detail.html', {
@@ -38,8 +39,19 @@ def vote(request, poll_id):
             'error_message': "You didn't select a choice.",
         })
     else:
-        selected_choice.votes += 1
-        selected_choice.save()
+        votes = Votes.objects.filter(user=user)
+        if votes:
+            return HttpResponseRedirect(reverse('citizenopinion:results', args=(p.id,)))
+            # return render(request, 'detail.html', {
+            #     'post': p.post,
+            #     'error_message': "You cant vote anymore",
+            # })
+        else:
+            new_vote = Votes.create(user, selected_choice)
+            new_vote.save()
+        # selected_choice.votes += 1
+        # selected_choice.save()
+
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
