@@ -44,7 +44,7 @@
 
 <ul>
 {% for choice in post.poll.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    <li>{{ choice.choice_text }} -- {{ choice.votes_count }} vote{{ choice.votes|pluralize }}</li>
 {% endfor %}
 </ul>
 
