@@ -39,32 +39,18 @@
   </form>
   </div>
 {% else %}
-<<<<<<< HEAD
-
-<h1>{{ post.poll.question }}</h1>
-
-<ul>
-{% for choice in post.poll.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes_count }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
-
-=======
 <div class="container">
-    
+
     <div class="shdw card" style="width:50%; margin-left:23% ;">
         <h1>{{ post.poll.question }}</h1>
         <ul class="counter " style="list-style-type:none; font-family:  sans-serif;">
         {% for choice in post.poll.choice_set.all %}
             <li>{{ choice.choice_text }} (Количество проголосовавших: {{ choice.votes_count }})</li>
-         
+
         {% endfor %}
         </ul>
-    
-<a class="btn btn-light text-white" style="background-color: #3f51b5;font-size: 18px; width: 100%; border: 0px; margin-top: 10px;" href="{% url 'citizenopinion:detail' poll.id %}">Назад</a>
 </div>
 </div>
->>>>>>> 3708afc864bcc1f7c6bab741a21ed4c3834c9d16
 {% endif %}
 
 {% endblock %}
