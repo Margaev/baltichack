@@ -8,15 +8,24 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+class City(models.Model):
+    title = models.CharField(max_length=32)
+
+    def __str__(self):
+        return self.title
+
+
 class Post(models.Model):
     title = models.CharField(max_length = 200)
     text = models.TextField()
     create_date = models.DateTimeField(default=timezone.now)
     city = models.CharField(max_length = 32)
     image = models.ImageField(upload_to = './', null = True)
-
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    
     def __str__(self):
         return self.title
+
 
 
 class Poll(models.Model):
