@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views import generic
 from .models import Choice, Post, Poll, Votes
 from django.contrib.auth import get_user_model
+from accounts.models import Profile
 
 User = get_user_model()
 
@@ -14,7 +15,8 @@ class IndexView(generic.ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return Post.objects.all()
+        loc = 'spb'
+        return Post.objects.all().filter(city=loc).order_by('-create_date')
 
 
 class DetailView(generic.DetailView):
