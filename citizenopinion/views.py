@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
 
-from .models import Choice, Post
+from .models import Choice, Post, Poll
 
 
 class IndexView(generic.ListView):
@@ -12,7 +12,7 @@ class IndexView(generic.ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return Post.objects.all()[:5]
+        return Post.objects.all()
 
 
 class DetailView(generic.DetailView):
@@ -21,18 +21,18 @@ class DetailView(generic.DetailView):
 
 
 class ResultsView(generic.DetailView):
-    model = Post
+    model = Poll
     template_name = 'results.html'
 
 
-def vote(request, post_id):
-    p = get_object_or_404(Post, pk=post_id)
+def vote(request, poll_id):
+    p = get_object_or_404(Poll, pk=poll_id)
     try:
         selected_choice = p.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the poll voting form.
         return render(request, 'detail.html', {
-            'post': p,
+            'poll': p,
             'error_message': "You didn't select a choice.",
         })
     else:

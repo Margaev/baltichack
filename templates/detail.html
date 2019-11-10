@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<input type="submit" value="Vote" />
-</form>
 
 <div class="container jumbotron">
   <div class="row">
-    <img  class="col-lg-6" src="media/{{ post.image }}" width="100%">
+    <img  class="col-lg-6" src="../media/{{ post.image }}" width="100%">
     <div class="col-lg-6">
     <h2>{{ post.title }}</h2>
     <p>{{ post.text }}</p>
@@ -26,11 +24,13 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'citizenopinion:vote' post.id %}" method="post">
+<form action="{% url 'citizenopinion:vote' post.poll.id %}" method="post">
 {% csrf_token %}
-{% for choice in poll.choice_set.all %}
+{% for choice in post.poll.choice_set.all %}
     <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
     <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
 {% endfor %}
+<input type="submit" value="Vote" />
+</form>
 
 {% endblock %}
