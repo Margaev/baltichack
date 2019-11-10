@@ -43,6 +43,17 @@ def vote(request, poll_id):
     else:
         votes = Votes.objects.filter(user=user)
         if votes:
+            user_polls = []
+            need_to_add = False
+            for v in votes:
+                user_polls.append(v.choice.poll)
+            if p not in user_polls:
+                need_to_add = True
+            if need_to_add:
+                new_vote = Votes.create(user, selected_choice)
+                new_vote.save()
+                selected_choice.votes_count = Votes.objects.filter(choice=selected_choice).count()
+                selected_choice.save()
             return HttpResponseRedirect(reverse('citizenopinion:results', args=(p.id,)))
             # return render(request, 'detail.html', {
             #     'post': p.post,
@@ -51,6 +62,8 @@ def vote(request, poll_id):
         else:
             new_vote = Votes.create(user, selected_choice)
             new_vote.save()
+            selected_choice.votes_count = Votes.objects.filter(choice=selected_choice).count()
+            selected_choice.save()
         # selected_choice.votes += 1
         # selected_choice.save()
 
