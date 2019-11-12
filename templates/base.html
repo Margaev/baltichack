@@ -37,12 +37,12 @@
         </div>
       <div class=" text-light" style="margin-top: 10px;  padding-bottom: -15px;">
         {% if user.is_authenticated %}
-        <small style="font-size: 18px;">Hi {{ user.username }}!
-          <a href="{% url 'logout' %}" class="btn btn-dark" style="margin-left: 10px; margin-top: -5px;">Log out</a></small>
+        <small style="font-size: 18px;">Вы вошли как {{ user.username }}
+          <a href="{% url 'logout' %}" class="btn btn-dark" style="margin-left: 10px; margin-top: -5px;">Выход</a></small>
       {% else %}
-          <small style="font-size: 18px;">You are not logged in.
-          <a href="{% url 'signup' %}" class="btn btn-dark" style="margin-left: 10px; margin-top: -5px;">Sign up </a>
-          <a href="{% url 'login' %}" class="btn btn-dark" style="margin-left: 10px; margin-top: -5px;">Log In</a></small>
+          <small style="font-size: 18px;">Вход не выполнен.
+          <a href="{% url 'signup' %}" class="btn btn-dark" style="margin-left: 10px; margin-top: -5px;">Регистрация</a>
+          <a href="{% url 'login' %}" class="btn btn-dark" style="margin-left: 10px; margin-top: -5px;">Вход</a></small>
       {% endif %}
       </div>
       </nav>
